@@ -25,8 +25,10 @@ app.get('/', (res) => res.sendFile(
   join(__dirname, 'public', 'index.html'),
 ));
 
-app.use((req, res, next) => {
-  next(new Error('File not found'));
+app.use((req, res) => {
+  res.status(404).sendFile(
+    join(__dirname, 'public', '404.html'),
+  );
 });
 
 app.use((err, req, res) => {
